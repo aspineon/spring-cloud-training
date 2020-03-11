@@ -2,14 +2,50 @@ version: '3'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
-    ports:
-      - 2181:2181
   kafka:
     image: wurstmeister/kafka
-    ports:
-      - 9092:9092
+    depends_on:
+      - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    #volumes:
-    #  - /var/run/docker.sock:/var/run/docker.sock
+  configuration:
+    image: training/configuration
+    depends_on:
+      - kafka
+    ports:
+      - 8888:8888
+    environment:
+      ACTIVE_PROFILE: production
+      KAFKA_SERVER: kafka
+  admin:
+    image: training/admin
+    ports:
+    - 8091:8091
+  discovery:
+    image: training/discovery
+    depends_on:
+      - configuration
+    ports:
+    - 8089:8089
+    environment:
+      ACTIVE_PROFILE: production
+      CONFIGURATION_SERVER_URI: http://configuration:8888
+  gateway:
+    image: training/gateway
+    depends_on:
+      - configuration
+    ports:
+      - 8080:8080
+    environment:
+      ACTIVE_PROFILE: production
+      CONFIGURATION_SERVER_URI: http://configuration:8888
+  zipkin:
+    image: training/zipkin
+    depends_on:
+      - configuration
+    ports:
+      - 8090:8090
+    environment:
+      ACTIVE_PROFILE: production
+      CONFIGURATION_SERVER_URI: http://configuration:8888
