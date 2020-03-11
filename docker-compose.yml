@@ -49,3 +49,27 @@ services:
     environment:
       ACTIVE_PROFILE: production
       CONFIGURATION_SERVER_URI: http://configuration:8888
+  payments:
+    image: training/payments
+    depends_on:
+      - configuration
+    environment:
+      ACTIVE_PROFILE: production
+      CONFIGURATION_SERVER_URI: http://configuration:8888
+  trips-database:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_DB=trips
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/var/lib/postgresql/db
+    volumes:
+      - ./data/trips:/var/lib/postgresql/db
+  trips:
+    image: training/trips
+    depends_on:
+      - configuration
+      - trips-database
+    environment:
+      ACTIVE_PROFILE: production
+      CONFIGURATION_SERVER_URI: http://configuration:8888

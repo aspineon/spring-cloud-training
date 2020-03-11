@@ -12,7 +12,7 @@ spring:
     stream:
       bindings:
         input:
-          destination: payments-topic
+          destination: pending-payments-topic
           content-type: application/json
           groups: trips
 baseCharge: 2000
