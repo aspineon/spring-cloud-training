@@ -4,4 +4,4 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888 # default value
-      label: 04-HA
+      label: 05-Docker
