@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: kafka
+  zipkin:
+    base-url: http://zipkin:8090
+  jpa:
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8089/eureka/
+  boot:
+    admin:
+      client:
+        url: http://admin:8091
