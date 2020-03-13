@@ -73,3 +73,15 @@ Content-Type: application/x-www-form-urlencoded
 path=trips-service
 
 ###
+
+POST http://localhost:8888/encrypt
+
+Spring
+
+###
+
+POST http://localhost:8888/decrypt
+
+c9f49977a841bfaa74b99ae0e487f113cc754b10a61e95439bec20e827022269
+
+###
