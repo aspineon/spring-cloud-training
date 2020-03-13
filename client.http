@@ -30,17 +30,19 @@ Accept: application/json
 
 POST {{baseUrl}}/api/v1/trips-service/drivers/2/trips
 Accept: application/json
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQxNTI2MTQsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzMGI4YTllYi00YmE4LTQ5NjQtOTk5NC03ZDNiMWVmMjE2M2EiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.-boHmGqDIfZlVHtsRV7AyR-PEySg9qxz1VXpJ2WLZ1s
 
 ###
 
 PUT {{baseUrl}}/api/v1/trips-service/trips/3
 Accept: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQxNTI2MTQsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzMGI4YTllYi00YmE4LTQ5NjQtOTk5NC03ZDNiMWVmMjE2M2EiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.-boHmGqDIfZlVHtsRV7AyR-PEySg9qxz1VXpJ2WLZ1s
 
 ###
 
 POST {{baseUrl}}/api/v1/payments-service/payments
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQxNTI2MTQsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzMGI4YTllYi00YmE4LTQ5NjQtOTk5NC03ZDNiMWVmMjE2M2EiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.-boHmGqDIfZlVHtsRV7AyR-PEySg9qxz1VXpJ2WLZ1s
 
 {
   "amount": 1000,
@@ -55,6 +57,7 @@ Content-Type: application/json
 
 POST http://localhost:8002/payments
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQxNTI2MTQsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzMGI4YTllYi00YmE4LTQ5NjQtOTk5NC03ZDNiMWVmMjE2M2EiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.-boHmGqDIfZlVHtsRV7AyR-PEySg9qxz1VXpJ2WLZ1s
 
 {
   "amount": 1000,
