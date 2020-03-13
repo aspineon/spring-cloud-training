@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.security.Principal;
 
 @RequestMapping("users")
 @RestController
@@ -27,6 +28,13 @@ public class UsersController {
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         User user = usersService.getUserById(id);
+        UserDto userDto = userMapper.toUserDto(user);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping("active")
+    public ResponseEntity<UserDto> getActiveUser(Principal principal) {
+        User user = (User) usersService.loadUserByUsername(principal.getName());
         UserDto userDto = userMapper.toUserDto(user);
         return ResponseEntity.ok(userDto);
     }

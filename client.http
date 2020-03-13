@@ -85,3 +85,30 @@ POST http://localhost:8888/decrypt
 c9f49977a841bfaa74b99ae0e487f113cc754b10a61e95439bec20e827022269
 
 ###
+
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "username": "jan",
+  "password": "123"
+}
+
+###
+
+POST http://localhost:8000/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+username=jan&password=123&client_id=training&grant_type=password
+
+###
+
+GET http://localhost:8000/users/active
+Accept: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQxNTI2MTQsInVzZXJfbmFtZSI6ImphbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzMGI4YTllYi00YmE4LTQ5NjQtOTk5NC03ZDNiMWVmMjE2M2EiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyIsInNjb3BlIjpbImFwaSJdfQ.-boHmGqDIfZlVHtsRV7AyR-PEySg9qxz1VXpJ2WLZ1s
+
+###
+
+
