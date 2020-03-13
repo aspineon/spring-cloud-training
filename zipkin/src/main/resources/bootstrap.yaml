@@ -4,6 +4,6 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888 # default value
-      label: 05-Docker
+      label: 06-Security
   main:
     web-application-type: none

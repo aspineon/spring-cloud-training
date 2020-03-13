@@ -2,82 +2,14 @@ version: '3'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
+    ports:
+      - 2181:2181
   kafka:
     image: wurstmeister/kafka
-    depends_on:
-      - zookeeper
+    ports:
+      - 9092:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  configuration:
-    image: training/configuration
-    depends_on:
-      - kafka
-    ports:
-      - 8888:8888
-    environment:
-      ACTIVE_PROFILE: production
-      KAFKA_SERVER: kafka
-  admin:
-    image: training/admin
-    ports:
-    - 8091:8091
-  discovery:
-    image: training/discovery
-    depends_on:
-      - configuration
-    ports:
-    - 8089:8089
-    environment:
-      ACTIVE_PROFILE: production
-      CONFIGURATION_SERVER_URI: http://configuration:8888
-  gateway:
-    image: training/gateway
-    depends_on:
-      - configuration
-    ports:
-      - 8080:8080
-    environment:
-      ACTIVE_PROFILE: production
-      CONFIGURATION_SERVER_URI: http://configuration:8888
-  zipkin:
-    image: training/zipkin
-    depends_on:
-      - configuration
-    ports:
-      - 8090:8090
-    environment:
-      ACTIVE_PROFILE: production
-      CONFIGURATION_SERVER_URI: http://configuration:8888
-  payments:
-    image: training/payments
-    depends_on:
-      - configuration
-    environment:
-      ACTIVE_PROFILE: production
-      CONFIGURATION_SERVER_URI: http://configuration:8888
-  trips-database:
-    image: postgres:12-alpine
-    environment:
-      - POSTGRES_DB=trips
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - PGDATA=/var/lib/postgresql/db
-    volumes:
-      - ./data/trips:/var/lib/postgresql/db
-  trips:
-    image: training/trips
-    depends_on:
-      - configuration
-      - trips-database
-    environment:
-      ACTIVE_PROFILE: production
-      CONFIGURATION_SERVER_URI: http://configuration:8888
-  portainer:
-    image: portainer/portainer
-    ports:
-      - 8000:8000
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./data/portainer:/data
+    #volumes:
+    #  - /var/run/docker.sock:/var/run/docker.sock
